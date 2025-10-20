@@ -31,18 +31,25 @@ h2 { font-size: 24px; color: var(--text-main); margin-bottom: 24px; text-align: 
 h3 { font-size: 20px; color: var(--accent-primary); margin-bottom: 16px; font-weight: 700; }
 h4 {
     font-size: 18px;
-    color: var(--text-main); /* ИЗМЕНЕНО: цвет как у основного текста */
+    color: var(--text-main);
     margin-bottom: 16px;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 8px;
-    font-weight: 700; /* Сделаем чуть жирнее для акцента */
+    font-weight: 700;
+}
+h5 {
+    font-size: 17px;
+    color: var(--text-main);
+    margin-top: 20px;
+    margin-bottom: 12px;
+    font-weight: 700;
 }
 p, li { font-size: 17px; margin-bottom: 12px; }
 ul, ol { padding-left: 20px; }
 
-strong { color: var(--accent-secondary); font-weight: 700; } /* ИЗМЕНЕНО: новый оранжевый */
-.role.consultant { color: var(--accent-consultant); font-weight: 700; } /* ИЗМЕНЕНО: новый цвет */
-.role.client { color: var(--accent-client); font-weight: 700; } /* ИЗМЕНЕНО: новый цвет */
+strong { color: var(--accent-secondary); font-weight: 700; }
+.role.consultant { color: var(--accent-consultant); font-weight: 700; }
+.role.client { color: var(--accent-client); font-weight: 700; }
 
 .subtitle, .module-subtitle { text-align: center; color: var(--text-light); }
 .subtitle { margin-bottom: 40px; }
@@ -91,7 +98,7 @@ footer {
     display: flex; justify-content: center; gap: 15px;
 }
 .content-screen footer {
-    position: sticky; bottom: 0; background-color: rgba(238, 242, 248, 0.8); /* Фон футера под цвет градиента */
+    position: sticky; bottom: 0; background-color: rgba(238, 242, 248, 0.8);
     backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     width: 100%; padding: 15px;
     box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
@@ -103,8 +110,8 @@ footer {
 .emotion-categories { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
 .emotion-category-btn {
     flex-grow: 1; padding: 10px 15px; font-size: 16px;
-    background-color: var(--bg-card); /* ИЗМЕНЕНО: белый фон для заметности */
-    color: var(--text-main); /* ИЗМЕНЕНО: темный текст для контраста */
+    background-color: var(--bg-card);
+    color: var(--text-main);
     border: 1px solid var(--border-color);
     border-radius: 8px; cursor: pointer;
     transition: all 0.2s ease; font-weight: 500;
@@ -122,11 +129,11 @@ footer {
     font-size: 18px; color: var(--text-main);
 }
 .emotion-list.active { display: block; }
-.emotion-list span { /* НОВЫЙ СТИЛЬ: для каждой эмоции в списке */
+.emotion-list span {
     display: block;
     padding: 6px 0;
     border-bottom: 1px solid var(--border-color);
 }
 .emotion-list span:last-child {
-    border-bottom: none; /* Убираем линию у последнего элемента */
+    border-bottom: none;
 }
