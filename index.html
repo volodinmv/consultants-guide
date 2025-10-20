@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Справочник психолога-консультанта</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Consultant's Guide">
+    <link rel="apple-touch-icon" href="icons/icon-152x152.png">
+</head>
+<body>
+
+    <!-- Главный контейнер, куда JavaScript будет "рисовать" все экраны -->
+    <div id="app-container"></div>
+
+    <!--
+      Сначала подключаем файл с данными (data.js),
+      а затем файл с логикой (app.js), который эти данные использует.
+      Порядок важен!
+    -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

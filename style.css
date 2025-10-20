@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+:root {
+    --bg-gradient-start: #F5F7FA; /* Оставляем прежний верх */
+    --bg-gradient-end: #EEF2F8;   /* Ваш новый, чуть более темный низ */
+    --bg-card: rgba(255, 255, 255, 0.8);
+    --text-main: #2D3748;
+    --text-light: #718096;
+    --accent-primary: #685ADB;      /* Ваш новый фиолетовый */
+    --accent-primary-dark: #5044A5; /* Затемненный фиолетовый для :hover */
+    --accent-secondary: #F2733B;    /* Ваш новый оранжевый для <strong> */
+    --accent-consultant: #011959;   /* Ваш новый цвет для консультанта */
+    --accent-client: #20A39E;       /* Ваш новый цвет для клиента */
+    --border-color: #E2E8F0;
+    --font-main: 'Inter', sans-serif;
+    --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-gradient-start);
+    background-image: linear-gradient(160deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    color: var(--text-main);
+    line-height: 1.7;
+}
+
+h1 { font-size: 28px; color: var(--text-main); text-align: center; margin-bottom: 8px; font-weight: 700; }
+h2 { font-size: 24px; color: var(--text-main); margin-bottom: 24px; text-align: center; font-weight: 700; }
+h3 { font-size: 20px; color: var(--accent-primary); margin-bottom: 16px; font-weight: 700; }
+h4 {
+    font-size: 18px;
+    color: var(--text-main); /* ИЗМЕНЕНО: цвет как у основного текста */
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+    font-weight: 700; /* Сделаем чуть жирнее для акцента */
+}
+p, li { font-size: 17px; margin-bottom: 12px; }
+ul, ol { padding-left: 20px; }
+
+strong { color: var(--accent-secondary); font-weight: 700; } /* ИЗМЕНЕНО: новый оранжевый */
+.role.consultant { color: var(--accent-consultant); font-weight: 700; } /* ИЗМЕНЕНО: новый цвет */
+.role.client { color: var(--accent-client); font-weight: 700; } /* ИЗМЕНЕНО: новый цвет */
+
+.subtitle, .module-subtitle { text-align: center; color: var(--text-light); }
+.subtitle { margin-bottom: 40px; }
+.logo { font-size: 40px; text-align: center; margin-bottom: 16px; }
+
+.screen { display: flex; flex-direction: column; min-height: 100vh; padding: 20px; max-width: 800px; margin: 0 auto; }
+main { flex-grow: 1; }
+header { margin-bottom: 20px; }
+
+.module-button, .menu-item-button, .nav-button {
+    display: block; width: 100%; padding: 18px 20px; margin-bottom: 15px;
+    border: none; border-radius: 12px; font-size: 18px; font-weight: 500;
+    font-family: var(--font-main); cursor: pointer; text-align: left;
+    transition: all 0.2s ease;
+}
+
+.module-button { text-align: center; }
+.module-subtitle { display: block; font-size: 14px; font-weight: 400; margin-top: 4px; }
+
+.module-button, .menu-item-button {
+    background-color: var(--bg-card); color: var(--text-main);
+    box-shadow: var(--shadow); border: 1px solid var(--border-color);
+}
+
+.module-button:hover, .menu-item-button:hover { transform: translateY(-3px); box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1); }
+
+.nav-button {
+    background-color: var(--accent-primary); color: white; text-align: center;
+    flex-grow: 1; box-shadow: var(--shadow);
+}
+.nav-button:hover { background-color: var(--accent-primary-dark); }
+
+article {
+    background-color: var(--bg-card); backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 25px; margin-bottom: 20px; border-radius: 16px;
+    box-shadow: var(--shadow); border: 1px solid rgba(255, 255, 255, 0.5);
+}
+.technique { margin-bottom: 20px; padding-left: 15px; border-left: 3px solid var(--accent-primary); }
+.technique p { margin-bottom: 8px; }
+
+.home-header { margin-top: 10vh; }
+
+footer {
+    margin-top: 30px; padding-top: 15px;
+    display: flex; justify-content: center; gap: 15px;
+}
+.content-screen footer {
+    position: sticky; bottom: 0; background-color: rgba(238, 242, 248, 0.8); /* Фон футера под цвет градиента */
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    width: 100%; padding: 15px;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
+    margin-left: -20px; width: calc(100% + 40px);
+    border-top: 1px solid var(--border-color);
+}
+
+/* --- Стили для словаря эмоций --- */
+.emotion-categories { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+.emotion-category-btn {
+    flex-grow: 1; padding: 10px 15px; font-size: 16px;
+    background-color: var(--bg-card); /* ИЗМЕНЕНО: белый фон для заметности */
+    color: var(--text-main); /* ИЗМЕНЕНО: темный текст для контраста */
+    border: 1px solid var(--border-color);
+    border-radius: 8px; cursor: pointer;
+    transition: all 0.2s ease; font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+.emotion-category-btn.active,
+.emotion-category-btn:hover {
+    background-color: var(--accent-primary); color: white;
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+}
+.emotion-list {
+    display: none; padding: 20px; background-color: var(--bg-card);
+    border-radius: 12px; border: 1px solid var(--border-color);
+    font-size: 18px; color: var(--text-main);
+}
+.emotion-list.active { display: block; }
+.emotion-list span { /* НОВЫЙ СТИЛЬ: для каждой эмоции в списке */
+    display: block;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.emotion-list span:last-child {
+    border-bottom: none; /* Убираем линию у последнего элемента */
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Справочник психолога-консультанта",
+  "short_name": "Консультант",
+  "description": "Помощник и справочник для начинающего психолога-консультанта.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#EEF2F8",
+  "theme_color": "#685ADB",
+  "icons": [
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
