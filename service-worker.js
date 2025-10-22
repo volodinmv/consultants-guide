@@ -1,4 +1,4 @@
-const CACHE_NAME = 'consultant-guide-cache-v2';
+const CACHE_NAME = 'consultant-guide-cache-v7';
 const FILES_TO_CACHE = [
   '/',
   '/index.html',
