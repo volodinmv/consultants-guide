@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let timerInterval = null;
     let timerSeconds = 0;
 
-    // --- ФУНКЦИИ-РЕНДЕРЕРЫ ---
+    // --- БЛОК 1: ФУНКЦИИ-РЕНДЕРЕРЫ (создают HTML для экранов) ---
 
     function renderHomeScreen() {
         let moduleButtonsHTML = appData.modules.map(module => `
@@ -39,62 +39,28 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderModuleMenu(moduleId) {
         const module = appData.modules.find(m => m.id === moduleId);
         if (!module) return renderHomeScreen();
-
         let sectionButtonsHTML = module.sections.map(section => `
             <button class="menu-item-button" data-action="open-section" data-module-id="${moduleId}" data-section-id="${section.id}">
                 ${section.title}
             </button>
         `).join('');
-
-        appContainer.innerHTML = `
-            <div id="module-menu-screen" class="screen active">
-                <header><h2>${module.title}</h2></header>
-                <main class="menu-list">${sectionButtonsHTML}</main>
-                <footer><button class="nav-button" data-action="go-home">🏠 Домой</button></footer>
-            </div>
-        `;
+        appContainer.innerHTML = `<div id="module-menu-screen" class="screen active"><header><h2>${module.title}</h2></header><main class="menu-list">${sectionButtonsHTML}</main><footer><button class="nav-button" data-action="go-home">🏠 Домой</button></footer></div>`;
     }
 
     function renderContentScreen(moduleId, sectionId) {
         const module = appData.modules.find(m => m.id === moduleId);
         const section = module ? module.sections.find(s => s.id === sectionId) : null;
         if (!section) return renderHomeScreen();
-
-        appContainer.innerHTML = `
-            <div id="content-screen" class="screen content-screen active">
-                <header><h2>${section.title}</h2></header>
-                <main>${section.content}</main>
-                <footer>
-                    <button class="nav-button" data-action="open-module" data-module-id="${moduleId}">⬅️ Назад</button>
-                    <button class="nav-button" data-action="go-home">🏠 Домой</button>
-                </footer>
-            </div>
-        `;
+        appContainer.innerHTML = `<div id="content-screen" class="screen content-screen active"><header><h2>${section.title}</h2></header><main>${section.content}</main><footer><button class="nav-button" data-action="open-module" data-module-id="${moduleId}">⬅️ Назад</button><button class="nav-button" data-action="go-home">🏠 Домой</button></footer></div>`;
     }
 
     function renderEmotionScreen() {
         const tool = appData.globalTools.find(t => t.id === 'emotions');
         if (!tool) return renderHomeScreen();
-
         const categories = Object.keys(tool.data);
         const firstCategoryKey = categories[0];
-
-        let categoryButtonsHTML = categories.map((catKey, index) => {
-            const category = tool.data[catKey];
-            return `<button class="emotion-category-btn ${index === 0 ? 'active' : ''}" data-category="${catKey}">${category.label}</button>`;
-        }).join('');
-
-        appContainer.innerHTML = `
-            <div id="emotions-screen" class="screen content-screen active">
-                <header><h2>${tool.title}</h2></header>
-                <main>
-                    <div class="emotion-tabs-container">${categoryButtonsHTML}</div>
-                    <div id="emotion-content-container"></div>
-                </main>
-                <footer><button class="nav-button" data-action="go-home">🏠 Домой</button></footer>
-            </div>
-        `;
-
+        let categoryButtonsHTML = categories.map((catKey, index) => { const category = tool.data[catKey]; return `<button class="emotion-category-btn ${index === 0 ? 'active' : ''}" data-category="${catKey}">${category.label}</button>`; }).join('');
+        appContainer.innerHTML = `<div id="emotions-screen" class="screen content-screen active"><header><h2>${tool.title}</h2></header><main><div class="emotion-tabs-container">${categoryButtonsHTML}</div><div id="emotion-content-container"></div></main><footer><button class="nav-button" data-action="go-home">🏠 Домой</button></footer></div>`;
         renderEmotionContent(firstCategoryKey);
         attachEmotionScreenLogic();
     }
@@ -104,63 +70,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const categoryData = toolData[categoryKey];
         const contentContainer = document.getElementById('emotion-content-container');
         if (!categoryData || !contentContainer) return;
-
         let subTabsHTML = `<button class="emotion-sub-tab-btn active" data-sub-content="emotions">Эмоции</button>`;
-        if (categoryData.states) {
-            subTabsHTML += `<button class="emotion-sub-tab-btn" data-sub-content="states">Мысли/Состояния</button>`;
-        }
-        if (categoryData.fears) {
-            subTabsHTML += `<button class="emotion-sub-tab-btn" data-sub-content="fears">Виды страха</button>`;
-        }
-
+        if (categoryData.states) subTabsHTML += `<button class="emotion-sub-tab-btn" data-sub-content="states">Мысли/Состояния</button>`;
+        if (categoryData.fears) subTabsHTML += `<button class="emotion-sub-tab-btn" data-sub-content="fears">Виды страха</button>`;
         let contentPanesHTML = `<div class="emotion-list active" data-pane="emotions">${categoryData.emotions}</div>`;
-        if (categoryData.states) {
-            contentPanesHTML += `<div class="emotion-list" data-pane="states">${categoryData.states}</div>`;
-        }
-        if (categoryData.fears) {
-            contentPanesHTML += `<div class="emotion-list" data-pane="fears">${categoryData.fears}</div>`;
-        }
-
+        if (categoryData.states) contentPanesHTML += `<div class="emotion-list" data-pane="states">${categoryData.states}</div>`;
+        if (categoryData.fears) contentPanesHTML += `<div class="emotion-list" data-pane="fears">${categoryData.fears}</div>`;
         contentContainer.innerHTML = `<div class="emotion-sub-tabs">${subTabsHTML}</div><div class="emotion-panes-container">${contentPanesHTML}</div>`;
     }
 
     function renderSessionConstructor() {
         const tool = appData.globalTools.find(t => t.id === 'sessionConstructor');
         if (!tool) return renderHomeScreen();
-
-        let stageButtonsHTML = tool.data.map((stage, index) => `
-            <button class="stage-button ${index === 0 ? 'active' : ''}" data-stage-id="${stage.id}">${index + 1}</button>
-        `).join('');
-
-        appContainer.innerHTML = `
-            <div id="constructor-screen" class="screen content-screen active">
-                <div class="constructor-header">
-                    <div class="timer">
-                        <span id="timer-display">00:00</span>
-                        <div class="timer-controls">
-                            <button id="timer-start-pause">▶️ Старт</button>
-                            <button id="timer-reset">🔄 Сброс</button>
-                        </div>
-                    </div>
-                    <div id="current-stage-indicator" class="current-stage"></div>
-                </div>
-                <main class="constructor-main" id="constructor-main"></main>
-                <footer class="constructor-footer">
-                    <div class="stage-selector">${stageButtonsHTML}</div>
-                    <button class="nav-button" id="reset-all-checkboxes">Сбросить отметки</button>
-                    <button class="nav-button" data-action="go-home">🏠 Домой</button>
-                </footer>
-            </div>
-        `;
+        let stageButtonsHTML = tool.data.map((stage, index) => `<button class="stage-button ${index === 0 ? 'active' : ''}" data-stage-id="${stage.id}">${index + 1}</button>`).join('');
+        appContainer.innerHTML = `<div id="constructor-screen" class="screen content-screen active"><div class="constructor-header"><div class="timer"><span id="timer-display">00:00</span><div class="timer-controls"><button id="timer-start-pause">▶️ Старт</button><button id="timer-reset">🔄 Сброс</button></div></div><div id="current-stage-indicator" class="current-stage"></div><div id="current-stage-purpose" class="current-stage-purpose"></div></div><main class="constructor-main" id="constructor-main"></main><footer class="constructor-footer"><div class="stage-selector">${stageButtonsHTML}</div><button class="nav-button" id="reset-all-checkboxes">Сбросить отметки</button><button class="nav-button" data-action="go-home">🏠 Домой</button></footer></div>`;
         attachConstructorLogic();
     }
 
-    // --- ЛОГИКА ДЛЯ ИНТЕРАКТИВНЫХ ЭЛЕМЕНТОВ ---
+    // --- БЛОК 2: ЛОГИКА ДЛЯ ИНТЕРАКТИВНЫХ ЭЛЕМЕНТОВ ---
 
     function attachEmotionScreenLogic() {
         const mainTabs = appContainer.querySelectorAll('.emotion-category-btn');
         if (!mainTabs.length) return;
-
         mainTabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 if (tab.classList.contains('active')) return;
@@ -169,13 +100,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderEmotionContent(tab.dataset.category);
             });
         });
-
         const emotionContentContainer = document.getElementById('emotion-content-container');
         if (emotionContentContainer) {
             emotionContentContainer.addEventListener('click', (event) => {
                 const subTab = event.target.closest('.emotion-sub-tab-btn');
                 if (!subTab || subTab.classList.contains('active')) return;
-
                 const subContentId = subTab.dataset.subContent;
                 emotionContentContainer.querySelectorAll('.emotion-sub-tab-btn').forEach(btn => btn.classList.remove('active'));
                 subTab.classList.add('active');
@@ -190,14 +119,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const toolData = appData.globalTools.find(t => t.id === 'sessionConstructor').data;
         const mainContent = document.getElementById('constructor-main');
         const stageIndicator = document.getElementById('current-stage-indicator');
+        const purposeIndicator = document.getElementById('current-stage-purpose');
         const stageButtons = document.querySelectorAll('.stage-button');
 
         function renderStageContent(stageId) {
             const stage = toolData.find(s => s.id === stageId);
-            if (!stage || !stageIndicator || !mainContent) return;
+            if (!stage || !stageIndicator || !mainContent || !purposeIndicator) return;
 
             stageIndicator.textContent = stage.title;
+            purposeIndicator.innerHTML = stage.purpose;
             mainContent.innerHTML = stage.content;
+
+            mainContent.scrollTop = 0; // Принудительно сбрасываем прокрутку контента
 
             const allCheckboxes = mainContent.querySelectorAll('input[type="checkbox"]');
             allCheckboxes.forEach(checkbox => {
@@ -272,8 +205,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (resetCheckboxesBtn) {
             resetCheckboxesBtn.addEventListener('click', () => {
                 toolData.forEach(stage => {
-                    const stageContent = new DOMParser().parseFromString(stage.content, 'text/html');
-                    stageContent.querySelectorAll('[data-storage-key]').forEach(el => {
+                    const stageContentDOM = new DOMParser().parseFromString(stage.content, 'text/html');
+                    stageContentDOM.querySelectorAll('[data-storage-key]').forEach(el => {
                         localStorage.removeItem(el.dataset.storageKey);
                     });
                 });
@@ -293,23 +226,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!targetButton) return;
         const action = targetButton.dataset.action;
         if (!action) return;
-
         event.preventDefault();
-
         const moduleId = targetButton.dataset.moduleId;
         const sectionId = targetButton.dataset.sectionId;
         const toolId = targetButton.dataset.toolId;
-
         switch (action) {
-            case 'go-home':
-                renderHomeScreen();
-                break;
-            case 'open-module':
-                renderModuleMenu(moduleId);
-                break;
-            case 'open-section':
-                renderContentScreen(moduleId, sectionId);
-                break;
+            case 'go-home': renderHomeScreen(); break;
+            case 'open-module': renderModuleMenu(moduleId); break;
+            case 'open-section': renderContentScreen(moduleId, sectionId); break;
             case 'open-global-tool':
                 if (toolId === 'emotions') renderEmotionScreen();
                 if (toolId === 'sessionConstructor') renderSessionConstructor();
