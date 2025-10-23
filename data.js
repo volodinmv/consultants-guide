@@ -1,5 +1,4 @@
 const appData = {
-    // Учебные модули
     modules: [
         {
             id: "mod1",
@@ -160,7 +159,6 @@ const appData = {
             ]
         }
     ],
-    // Глобальные инструменты
     globalTools: [
         {
             id: "emotions",
@@ -201,8 +199,8 @@ const appData = {
                 {
                     id: "s1",
                     title: "1. Контакт и безопасность",
+                    purpose: "🎯 Создаем безопасную и принимающую атмосферу.",
                     content: `
-                        <p class="stage-purpose">Создаем безопасную и принимающую атмосферу.</p>
                         <div class="checklist-item"><input type="checkbox" id="q1-1" data-storage-key="s1_q1-1"><label for="q1-1">«Располагайтесь поудобнее. Как добрались?»</label></div>
                         <div class="checklist-item"><input type="checkbox" id="q1-2" data-storage-key="s1_q1-2"><label for="q1-2">«Все, о чем мы говорим, конфиденциально».</label></div>
                         <div class="checklist-item"><input type="checkbox" id="q1-3" data-storage-key="s1_q1-3"><label for="q1-3">«Наша встреча продлится 50 минут».</label></div>
@@ -211,8 +209,8 @@ const appData = {
                 {
                     id: "s2",
                     title: "2. Первичный запрос",
+                    purpose: "🎯 Услышать и зафиксировать проблему в формулировке самого клиента.",
                     content: `
-                        <p class="stage-purpose">Услышать и зафиксировать проблему в формулировке самого клиента.</p>
                         <div class="checklist-item"><input type="checkbox" id="q2-1" data-storage-key="s2_q2-1"><label for="q2-1">«С чего бы вы хотели начать?»</label></div>
                         <div class="checklist-item"><input type="checkbox" id="q2-2" data-storage-key="s2_q2-2"><label for="q2-2">«Что привело вас сюда сегодня?»</label></div>
                         <div class="checklist-item"><input type="checkbox" id="q2-3" data-storage-key="s2_q2-3"><label for="q2-3">«Как бы вы сами описали свою ситуацию?»</label></div>
@@ -221,8 +219,8 @@ const appData = {
                 {
                     id: "s3",
                     title: "3. Прояснение ситуации",
+                    purpose: "🎯 Глубже понять контекст проблемы.",
                     content: `
-                        <p class="stage-purpose">Глубже понять контекст проблемы.</p>
                         <div class="checklist-item"><input type="checkbox" id="q3-1" data-storage-key="s3_q3-1"><label for="q3-1"><strong>Проблема:</strong> «Как именно это проявляется в вашей жизни?»</label></div>
                         <div class="checklist-item"><input type="checkbox" id="q3-2" data-storage-key="s3_q3-2"><label for="q3-2"><strong>Эмоции:</strong> «Что вы чувствуете, когда это происходит?»</label></div>
                         <div class="checklist-item"><input type="checkbox" id="q3-3" data-storage-key="s3_q3-3"><label for="q3-3"><strong>Соматика:</strong> «Где в теле вы это ощущаете?»</label></div>
@@ -233,8 +231,8 @@ const appData = {
                 {
                     id: "s4",
                     title: "4. Рабочий запрос",
+                    purpose: "🎯 Трансформировать первичный запрос в ясную и достижимую цель работы.",
                     content: `
-                        <p class="stage-purpose">Перевести жалобу в конкретную, достижимую и личностно значимую цель.</p>
                         <div class="checklist-item"><input type="checkbox" id="q4-1" data-storage-key="s4_q4-1"><label for="q4-1"><strong>1. Чего вы хотите?</strong></label></div>
                         <div class="checklist-item"><input type="checkbox" id="q4-2" data-storage-key="s4_q4-2"><label for="q4-2"><strong>2. Почему это важно для вас?</strong></label></div>
                         <div class="checklist-item"><input type="checkbox" id="q4-3" data-storage-key="s4_q4-3"><label for="q4-3"><strong>3. Как поймёте, что достигли результата?</strong></label></div>
@@ -246,8 +244,8 @@ const appData = {
                 {
                     id: "s5",
                     title: "5. Контракт",
+                    purpose: "🎯 Чётко определить, что делает клиент, а что — консультант.",
                     content: `
-                        <p class="stage-purpose">Чётко определить, что делает клиент, а что — консультант.</p>
                         <div class="checklist-item"><input type="checkbox" id="q5-1" data-storage-key="s5_q5-1"><label for="q5-1">Обсудить распределение ответственности.</label></div>
                         <div class="checklist-item"><input type="checkbox" id="q5-2" data-storage-key="s5_q5-2"><label for="q5-2">Обсудить возможное сопротивление.</label></div>
                         <div class="checklist-item"><input type="checkbox" id="q5-3" data-storage-key="s5_q5-3"><label for="q5-3">Обсудить организационные вопросы (время, оплата, отмены...).</label></div>
